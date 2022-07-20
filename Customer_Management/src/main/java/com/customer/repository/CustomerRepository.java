@@ -7,5 +7,7 @@ import com.customer.model.Customer;
 
 @Repository
 public interface CustomerRepository extends MongoRepository<Customer, String> {
+	
+	public Customer findByUserNameAndPassword(String username, String password);
 
 }

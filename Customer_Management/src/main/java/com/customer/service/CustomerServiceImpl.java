@@ -24,7 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer customerLogin(String username, String password) {
-		Customer customer = customerRepository.findByUserNameAndPassword(username, password);
+		Customer customer = customerRepository.findByUsernameAndPassword(username, password);
 
 		if (customer == null) {
 			throw new AuthenticationFailureException("Username or password is incorrect");

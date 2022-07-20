@@ -52,8 +52,16 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer updateCustomer(Customer customer, String customerId) {
-		return customerRepository.save(customer);
+	public Customer updateCustomer(Customer customer) {
+		Optional<Customer> optionalCustomer = customerRepository.findById(customer.getCustomerId());
+
+		if (optionalCustomer == null) {
+			throw new CustomerNotFoundException("Customer not exising with id: " + customer.getCustomerId());
+		}
+
+		Customer updatedCustomer = customerRepository.save(customer);
+
+		return updatedCustomer;
 	}
 
 	@Override
@@ -61,7 +69,7 @@ public class CustomerServiceImpl implements CustomerService {
 		Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
 
 		if (optionalCustomer == null) {
-			throw new CustomerNotFoundException("Student not exising with id: " + customerId);
+			throw new CustomerNotFoundException("Customer not exising with id: " + customerId);
 		}
 
 		Customer customer = optionalCustomer.get();

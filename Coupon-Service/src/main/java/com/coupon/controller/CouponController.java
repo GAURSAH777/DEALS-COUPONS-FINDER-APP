@@ -26,12 +26,20 @@ public class CouponController {
 	@Autowired
 	private CouponService couponService;
 
-	@GetMapping("/allCustomers")
+	/*
+	 * fetchAllCoupons() is used to get all the list of coupons
+	 */
+	
+	@GetMapping("/allCoupons")
 	public List<Coupon> fetchAllCoupons() {
 
 		List<Coupon> coupons = couponService.getAllCoupons();
 		return coupons;
 	}
+	
+	/*
+	 * addCoupon() is used to add coupon details
+	 */
 
 	@PostMapping("/save")
 	public ResponseEntity<Coupon> addCoupon(@Valid @RequestBody Coupon coupon) {
@@ -40,6 +48,10 @@ public class CouponController {
 		ResponseEntity<Coupon> responseEntity = new ResponseEntity<>(newCoupon, HttpStatus.CREATED);
 		return responseEntity;
 	}
+	
+	/*
+	 * fetchCouponById() is used to get the detail of particular coupon
+	 */
 
 	@GetMapping("/get/{id}")
 	public ResponseEntity<?> fetchCouponById(@PathVariable("id") String couponId) {
@@ -49,6 +61,10 @@ public class CouponController {
 		responseEntity = new ResponseEntity<>(coupon, HttpStatus.OK);
 		return responseEntity;
 	}
+	
+	/*
+	 * deleteCouponById() is used to delete/remove a particular coupon
+	 */
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteCouponById(@PathVariable("id") String couponId) {
@@ -58,9 +74,13 @@ public class CouponController {
 		responseEntity = new ResponseEntity<>("Coupon deleted successfully", HttpStatus.OK);
 		return responseEntity;
 	}
+	
+	/*
+	 * updateCoupon() is used to update a particular coupon detail
+	 */
 
 	@PutMapping("/update")
-	public ResponseEntity<Object> updateCustomer(@Valid @RequestBody Coupon coupon) {
+	public ResponseEntity<Object> updateCoupon(@Valid @RequestBody Coupon coupon) {
 
 		ResponseEntity<Object> responseEntity = null;
 		couponService.updateCoupon(coupon);

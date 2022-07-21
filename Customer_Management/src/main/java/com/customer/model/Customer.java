@@ -39,6 +39,7 @@ public class Customer {
 			+ " a length of at least 8 characters and a maximum of 20 characters")
 	private String password;
 
+	
 	public Customer() {
 
 	}

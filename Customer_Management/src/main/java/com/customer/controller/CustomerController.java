@@ -2,6 +2,8 @@ package com.customer.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +28,7 @@ public class CustomerController {
 	private CustomerService customerService;
 
 	@PostMapping("/customer-login")
-	public ResponseEntity<Customer> doStudentLogin(@RequestParam("username") String username,
+	public ResponseEntity<Customer> doCustomerLogin(@RequestParam("username") String username,
 			@RequestParam("password") final String password) {
 
 		Customer customer = customerService.customerLogin(username, password);
@@ -45,7 +47,7 @@ public class CustomerController {
 	}
 
 	@PostMapping("/save")
-	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
+	public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer) {
 
 		Customer newCustomer = customerService.addCustomer(customer);
 		ResponseEntity<Customer> responseEntity = new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
@@ -71,11 +73,11 @@ public class CustomerController {
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Object> updateStudent(@RequestBody Customer customer) {
+	public ResponseEntity<Object> updateCustomer(@Valid @RequestBody Customer customer) {
 
 		ResponseEntity<Object> responseEntity = null;
-		Customer updatedCustomer = customerService.updateCustomer(customer);
-		responseEntity = new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
+		customerService.updateCustomer(customer);
+		responseEntity = new ResponseEntity<>("Customer updated successfully", HttpStatus.OK);
 		return responseEntity;
 	}
 

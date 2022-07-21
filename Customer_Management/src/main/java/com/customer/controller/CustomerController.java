@@ -20,12 +20,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.customer.model.Customer;
 import com.customer.service.CustomerService;
 
+/*
+ * This controller class contains some basic CRUD operations
+ */
+
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
+
+	/*
+	 * doCustomerLogin() is used to login to the customer dashboard
+	 */
 
 	@PostMapping("/customer-login")
 	public ResponseEntity<Customer> doCustomerLogin(@RequestParam("username") String username,
@@ -39,12 +47,20 @@ public class CustomerController {
 
 	}
 
+	/*
+	 * fetchAllCustomers() is used to get list of all customers
+	 */
+
 	@GetMapping("/allCustomers")
 	public List<Customer> fetchAllCustomers() {
 
 		List<Customer> customers = customerService.getAllCustomers();
 		return customers;
 	}
+
+	/*
+	 * addCustomer() is used to add customer details
+	 */
 
 	@PostMapping("/save")
 	public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer) {
@@ -53,6 +69,10 @@ public class CustomerController {
 		ResponseEntity<Customer> responseEntity = new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
 		return responseEntity;
 	}
+
+	/*
+	 * fetchCustomerById() is used to get detail of particular customer
+	 */
 
 	@GetMapping("/get/{id}")
 	public ResponseEntity<?> fetchCustomerById(@PathVariable("id") String customerId) {
@@ -63,6 +83,10 @@ public class CustomerController {
 		return responseEntity;
 	}
 
+	/*
+	 * deleteCustomerById() is used to delete a single customer detail
+	 */
+
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteCustomerById(@PathVariable("id") String customerId) {
 
@@ -71,6 +95,10 @@ public class CustomerController {
 		responseEntity = new ResponseEntity<>("Customer deleted successfully", HttpStatus.OK);
 		return responseEntity;
 	}
+
+	/*
+	 * updateCustomer() is used to update particular customer detail
+	 */
 
 	@PutMapping("/update")
 	public ResponseEntity<Object> updateCustomer(@Valid @RequestBody Customer customer) {

@@ -8,6 +8,9 @@ import javax.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/*
+ * Added Bean Validation
+ */
 @Document(collection = "customer")
 public class Customer {
 

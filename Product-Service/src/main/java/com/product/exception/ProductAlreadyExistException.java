@@ -1,4 +1,4 @@
-package com.coupon.exception;
+package com.product.exception;
 
 public class ProductAlreadyExistException extends RuntimeException {
 

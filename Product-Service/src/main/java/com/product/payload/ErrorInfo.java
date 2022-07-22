@@ -1,4 +1,4 @@
-package com.coupon.payload;
+package com.product.payload;
 
 public class ErrorInfo {
 	private String uri;

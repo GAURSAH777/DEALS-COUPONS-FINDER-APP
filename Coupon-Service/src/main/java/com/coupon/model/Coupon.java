@@ -18,7 +18,7 @@ public class Coupon {
 	private String couponId;
 
 	@NotNull(message = "Coupon Code can not be empty")
-	@Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z])$", message = "Coupon Code should contain at least one upper case letter and at least one digit")
+//	@Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z])$", message = "Coupon Code should contain at least one upper case letter and at least one digit")
 	private String couponCode;
 
 	@NotNull(message = "Company Name can not be empty")

@@ -39,7 +39,7 @@ public class PaymentController {
 	}
 
 	@GetMapping("/get/{id}")
-	public ResponseEntity<PaymentDetails> fetchPaymentDetailById(@PathVariable("id") int paymentId) {
+	public ResponseEntity<PaymentDetails> fetchPaymentDetailById(@PathVariable("id") String paymentId) {
 		PaymentDetails pay = paymentService.viewPaymentDetailById(paymentId);
 		ResponseEntity<PaymentDetails> responseEntity = new ResponseEntity<PaymentDetails>(pay, HttpStatus.ACCEPTED);
 		return responseEntity;

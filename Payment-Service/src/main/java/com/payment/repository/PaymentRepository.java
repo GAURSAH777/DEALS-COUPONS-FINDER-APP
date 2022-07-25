@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.payment.model.PaymentDetails;
 
 @Repository
-public interface PaymentRepository extends MongoRepository<PaymentDetails, Integer> {
+public interface PaymentRepository extends MongoRepository<PaymentDetails, String> {
 
 }

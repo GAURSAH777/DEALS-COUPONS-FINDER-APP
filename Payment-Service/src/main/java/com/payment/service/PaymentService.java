@@ -10,6 +10,6 @@ public interface PaymentService {
 
 	List<PaymentDetails> viewAllPaymentDetails();
 
-	PaymentDetails viewPaymentDetailById(int paymentId);
+	PaymentDetails viewPaymentDetailById(String paymentId);
 
 }

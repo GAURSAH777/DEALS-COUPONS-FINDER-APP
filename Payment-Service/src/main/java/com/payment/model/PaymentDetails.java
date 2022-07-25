@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class PaymentDetails {
 
 	@Id
-	private int paymentId;
+	private String paymentId;
 
 	private String Amount;
 
@@ -17,18 +17,18 @@ public class PaymentDetails {
 
 	}
 
-	public PaymentDetails(int paymentId, String amount, String paymentStatus) {
+	public PaymentDetails(String paymentId, String amount, String paymentStatus) {
 		super();
 		this.paymentId = paymentId;
 		Amount = amount;
 		this.paymentStatus = paymentStatus;
 	}
 
-	public int getPaymentId() {
+	public String getPaymentId() {
 		return paymentId;
 	}
 
-	public void setPaymentId(int paymentId) {
+	public void setPaymentId(String paymentId) {
 		this.paymentId = paymentId;
 	}
 

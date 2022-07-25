@@ -1,5 +1,7 @@
 package com.cart.service;
 
+import java.util.List;
+
 import com.cart.model.Cart;
 
 public interface CartService {
@@ -8,6 +10,6 @@ public interface CartService {
 
 	void deleteCartById(int cartId);
 
-	Cart getCart(int cartId);
+	List<Cart> getAllCarts();
 
 }

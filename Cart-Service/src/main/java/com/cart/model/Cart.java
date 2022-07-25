@@ -11,13 +11,13 @@ public class Cart {
 	@Id
 	private int cartId;
 
-	private List<Product> products;
+	private Product products;
 
 	public Cart() {
 
 	}
 
-	public Cart(int cartId, List<Product> products) {
+	public Cart(int cartId, Product products) {
 		super();
 		this.cartId = cartId;
 		this.products = products;
@@ -31,11 +31,11 @@ public class Cart {
 		this.cartId = cartId;
 	}
 
-	public List<Product> getProducts() {
+	public Product getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<Product> products) {
+	public void setProducts(Product products) {
 		this.products = products;
 	}
 

@@ -19,8 +19,8 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public Cart addCart(Cart cart) {
-		Cart savedCart = cartRepository.findProductById(cart.getProducts());
-		if (savedCart != null) {
+		Optional<Cart> savedCart = cartRepository.findById(cart.getCartId());
+		if (savedCart.isPresent()) {
 			throw new ProductAlreadyExistException();
 		} else
 			return cartRepository.save(cart);

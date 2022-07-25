@@ -19,13 +19,14 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product addProduct(Product product) {
-		boolean isProductExist = productRepository.existsById(product.getProductId());
-		if (isProductExist) {
-			throw new ProductAlreadyExistException("Product already found with this ID:" + product.getProductId());
-		} else {
-			Product savedProduct = productRepository.save(product);
-			return savedProduct;
-		}
+//		Optional<Product> optionalProduct = productRepository.findById(product.getProductId());
+//		if (optionalProduct.isEmpty()) {
+		Product savedProduct = productRepository.save(product);
+		return savedProduct;
+
+//		} else {
+//			throw new ProductAlreadyExistException("Product Already Exist with id: " + product.getProductId());
+//		}
 	}
 
 	@Override

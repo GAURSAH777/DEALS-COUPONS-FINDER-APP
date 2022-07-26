@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +40,8 @@ public class CustomerController {
 	@Autowired
 	private RestTemplate restTemplate;
 
+	private Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
+
 	/*
 	 * doCustomerLogin() is used to login to the customer dashboard
 	 */
@@ -46,10 +50,13 @@ public class CustomerController {
 	public ResponseEntity<Customer> doCustomerLogin(@RequestParam("username") String username,
 			@RequestParam("password") final String password) {
 
+		LOGGER.info("customer is logging-START");
+
 		Customer customer = customerService.customerLogin(username, password);
 
 		ResponseEntity<Customer> responseEntity = new ResponseEntity<>(customer, HttpStatus.OK);
 
+		LOGGER.info("customer logged in successfully-END");
 		return responseEntity;
 
 	}
@@ -60,7 +67,7 @@ public class CustomerController {
 
 	@GetMapping("/allCustomers")
 	public List<Customer> fetchAllCustomers() {
-
+		LOGGER.info("Inside fetchAllCustomers of CustomerController");
 		List<Customer> customers = customerService.getAllCustomers();
 		return customers;
 	}
@@ -71,7 +78,7 @@ public class CustomerController {
 
 	@PostMapping("/save")
 	public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer) {
-
+		LOGGER.info("Inside addCustomers of CustomerController");
 		Customer newCustomer = customerService.addCustomer(customer);
 		ResponseEntity<Customer> responseEntity = new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
 		return responseEntity;
@@ -83,7 +90,7 @@ public class CustomerController {
 
 	@GetMapping("/get/{id}")
 	public ResponseEntity<?> fetchCustomerById(@PathVariable("id") String customerId) {
-
+		LOGGER.info("Inside fetchCustomerById of CustomerController");
 		ResponseEntity<?> responseEntity = null;
 		Customer customer = customerService.getCustomerById(customerId);
 		responseEntity = new ResponseEntity<>(customer, HttpStatus.OK);
@@ -96,7 +103,7 @@ public class CustomerController {
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteCustomerById(@PathVariable("id") String customerId) {
-
+		LOGGER.info("Inside deleteCustomerById of CustomerController");
 		ResponseEntity<String> responseEntity = null;
 		customerService.deleteCustomer(customerId);
 		responseEntity = new ResponseEntity<>("Customer deleted successfully", HttpStatus.OK);
@@ -109,10 +116,11 @@ public class CustomerController {
 
 	@PutMapping("/update")
 	public ResponseEntity<Object> updateCustomer(@Valid @RequestBody Customer customer) {
-
+		LOGGER.info("Inside updateCustomer of CustomerController");
 		ResponseEntity<Object> responseEntity = null;
 		customerService.updateCustomer(customer);
 		responseEntity = new ResponseEntity<>("Customer updated successfully", HttpStatus.OK);
+		LOGGER.info("Customer updated successfully");
 		return responseEntity;
 	}
 

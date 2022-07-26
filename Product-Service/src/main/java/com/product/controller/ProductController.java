@@ -19,6 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.product.model.Product;
 import com.product.service.ProductService;
 
+/*
+ * @Author: Gaurab Sah
+ * Created on:2022-07-22
+ */
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {

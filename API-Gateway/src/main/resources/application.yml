@@ -1,0 +1,51 @@
+server:
+  port: 8087
+  
+eureka:
+  instance:
+    hostname: localhost
+    
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: Customer-Service
+        uri:
+          lb://Customer-Service
+        predicates:
+         - path=/customer/**
+         
+      - id: Coupon-Service
+        uri:
+          lb://Coupon-Service
+        predicates:
+         - path=/coupon/**
+         
+      - id: Cart-Service
+        uri:
+          lb://Cart-Service
+        predicates:
+         - path=/cart/** 
+         
+      - id: Product-Service
+        uri:
+          lb://Product-Service
+        predicates:
+         - path=/product/**
+         
+      - id: Payment-Service
+        uri:
+          lb://Payment-Service
+        predicates:
+         - path=/payment/**
+         
+      - id: Admin
+        uri:
+          lb://Admin
+        predicates:
+         - path=/admin/**
+          
+    
+            

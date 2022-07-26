@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /*
  * Added Bean Validation
  */
-@Document(collection = "customer")
+
 public class Customer {
 
 	@Id

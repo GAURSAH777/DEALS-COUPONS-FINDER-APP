@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * used Bean Validation in Model class 
  */
 
-@Document(collection = "product")
+
 public class Product {
 
 	@Id

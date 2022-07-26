@@ -51,21 +51,22 @@ public class AdminController {
 
 //	----------------Customer Service--------------------
 
-	@GetMapping("/listUser")
+	@GetMapping("/allCustomers")
 	public List<Customer> fetchAllCustomers() {
-		return Arrays.asList(restTemplate.getForObject("http://Customer-Service/customer/listUser", Customer[].class));
+		return Arrays
+				.asList(restTemplate.getForObject("http://customer-service/customer/allCustomers", Customer[].class));
 	}
 
 //	----------------Coupon Service------------------------
 
-	@GetMapping("/list")
+	@GetMapping("/allCoupons")
 	public List<Coupon> getAllCoupons() {
-		return Arrays.asList(restTemplate.getForObject("http://Coupon-Service/coupon/list", Coupon[].class));
+		return Arrays.asList(restTemplate.getForObject("http://coupon-service/coupon/allCoupons", Coupon[].class));
 	}
 
-	@PostMapping(value = "/addCoupon")
+	@PostMapping(value = "/save")
 	public String addCoupon(@RequestBody Coupon coupon) {
-		return restTemplate.postForObject("http://coupon-service/coupon/add", coupon, String.class);
+		return restTemplate.postForObject("http://coupon-service/coupon/save", coupon, String.class);
 	}
 
 	@DeleteMapping(value = "/delete/{couponId}")
@@ -74,9 +75,9 @@ public class AdminController {
 		return "Coupon with Id = " + couponId + " Deleted Successfully";
 	}
 
-	@PutMapping(value = "/updateCoupon/{couponId}")
-	public String updateCoupon(@RequestBody Coupon coupon, @PathVariable String couponId) {
-		restTemplate.put("http://coupon-service/coupons/update/{couponId}", coupon, couponId, String.class);
+	@PutMapping(value = "/updateCoupon")
+	public String updateCoupon(@RequestBody Coupon coupon) {
+		restTemplate.put("http://coupon-service/coupons/update/{couponId}", coupon, String.class);
 		return "coupon Updated Succesfully";
 	}
 

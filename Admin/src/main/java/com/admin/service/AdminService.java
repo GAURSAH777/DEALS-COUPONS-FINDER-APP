@@ -3,9 +3,6 @@ package com.admin.service;
 import java.util.List;
 
 import com.admin.model.Admin;
-import com.admin.model.Coupon;
-import com.admin.model.Customer;
-import com.admin.model.Product;
 
 public interface AdminService {
 
@@ -16,27 +13,28 @@ public interface AdminService {
 	void deleteAdmin(int id);
 
 	List<Admin> getAllAdmin();
+}
 
 //	--------Customer Service----------
-	List<Customer> getAllCustomers();
+//	List<Customer> getAllCustomers();
 
 //	---------Coupon Service-------------
 
-	List<Coupon> getAllCoupons();
-
-	Coupon addCoupon(Coupon coupon);
-
-	Coupon updateCoupon(Coupon coupon);
-
-	void deleteCoupon(String couponId);
+//	List<Coupon> getAllCoupons();
+//
+//	Coupon addCoupon(Coupon coupon);
+//
+//	Coupon updateCoupon(Coupon coupon);
+//
+//	void deleteCoupon(String couponId);
 
 //	--------------Product Service------------
-	List<Product> getAllProducts();
-
-	Product addProduct(Product product);
-
-	Product updateProduct(Product product);
-
-	void deleteProduct(String productId);
-
-}
+//	
+//	List<Product> getAllProducts();
+//
+//	Product addProduct(Product product);
+//
+//	Product updateProduct(Product product);
+//
+//	void deleteProduct(String productId);
+//

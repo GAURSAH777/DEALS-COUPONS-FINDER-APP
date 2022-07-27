@@ -12,7 +12,4 @@ public interface CustomerRepository extends MongoRepository<Customer, String> {
 
 	public Object getOne(String id);
 
-	public Object findOne(String id);
-
-
 }

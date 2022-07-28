@@ -94,4 +94,19 @@ public class ProductServiceImpl implements ProductService {
 
 	}
 
+	@Override
+	public Product getProductByName(String productName) {
+		LOGGER.info("Get Product-START!");
+		Product product = productRepository.findProductByProductName(productName);
+		if (product == null) {
+			LOGGER.info("Product Not Found");
+			throw new ProductNotFoundException("Product not found with Id: " + productName);
+		} else {
+
+			LOGGER.info("Displaying Product!");
+			LOGGER.info("Add Product-END!");
+			return product;
+		}
+	}
+
 }

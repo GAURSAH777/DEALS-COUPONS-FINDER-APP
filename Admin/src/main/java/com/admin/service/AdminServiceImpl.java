@@ -34,7 +34,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void deleteAdmin(int id) {
+	public void deleteAdmin(String id) {
 		LOGGER.info("Delete Admin -START!");
 		LOGGER.info("Delete Admin -END!");
 		adminRepository.deleteById(id);

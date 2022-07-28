@@ -1,4 +1,4 @@
-package com.payment.exception;
+package com.cart.exception;
 
 public class PaymentNotFoundException extends RuntimeException {
 
@@ -7,8 +7,7 @@ public class PaymentNotFoundException extends RuntimeException {
 
 	}
 
-	public PaymentNotFoundException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
+	public PaymentNotFoundException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 
 	}

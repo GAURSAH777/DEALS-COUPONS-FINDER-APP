@@ -69,6 +69,16 @@ public class ProductController {
 		return responseEntity;
 	}
 
+	@GetMapping("/product/{productName}")
+	public ResponseEntity<Product> fetchProductByName(@PathVariable("productName") String productName) {
+		LOGGER.info("Inside fetchProductById of ProductController");
+		Product product = productService.getProductByName(productName);
+		LOGGER.info("Fetching Product");
+		ResponseEntity<Product> responseEntity = new ResponseEntity<Product>(product, HttpStatus.FOUND);
+		LOGGER.info("Fetch Product -END!");
+		return responseEntity;
+	}
+
 	@PutMapping("/update")
 	public ResponseEntity<Product> updateProduct(@Valid @RequestBody Product product) {
 		LOGGER.info("Inside updateProduct of ProductController");

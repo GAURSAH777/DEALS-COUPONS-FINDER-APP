@@ -35,7 +35,7 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void deleteCartById(int cartId) {
+	public void deleteCartById(String cartId) {
 		LOGGER.info("Delete Cart -START!");
 		Optional<Cart> optionalCart = cartRepository.findById(cartId);
 		if (optionalCart == null) {

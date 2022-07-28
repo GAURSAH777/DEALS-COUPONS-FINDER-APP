@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Cart {
 
 	@Id
-	private int cartId;
+	private String cartId;
 
 	private List<Product> products;
 
@@ -17,17 +17,17 @@ public class Cart {
 
 	}
 
-	public Cart(int cartId, List<Product> products) {
+	public Cart(String cartId, List<Product> products) {
 		super();
 		this.cartId = cartId;
 		this.products = products;
 	}
 
-	public int getCartId() {
+	public String getCartId() {
 		return cartId;
 	}
 
-	public void setCartId(int cartId) {
+	public void setCartId(String cartId) {
 		this.cartId = cartId;
 	}
 

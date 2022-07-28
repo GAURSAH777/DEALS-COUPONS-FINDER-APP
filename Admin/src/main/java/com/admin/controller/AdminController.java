@@ -51,7 +51,7 @@ public class AdminController {
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public void deleteAdmin(@PathVariable int id) {
+	public void deleteAdmin(@PathVariable String id) {
 		LOGGER.info("Inside deleteAdmin of AdminController");
 		adminService.deleteAdmin(id);
 	}

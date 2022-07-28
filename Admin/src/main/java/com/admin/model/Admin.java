@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Admin {
 
 	@Id
-	private int id;
+	private String id;
 
 	@NotNull(message = "Username should not be empty")
 	@Size(min = 2, message = "Username should not be less than 2 characters")
@@ -25,7 +25,7 @@ public class Admin {
 
 	}
 
-	public Admin(int id,
+	public Admin(String id,
 			@NotNull(message = "Username should not be empty") @Size(min = 2, message = "Username should not be less than 2 characters") String username,
 			@NotNull(message = "Password should not be empty") @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message = "Password Should contain:\n1)a digit must occur at least once\n 2)a lower case letter must occur at least once\n\r\n 3)an upper case letter must occur at least once\n4)a special character must occur at least once\n\r\n5)no whitespace allowed in the entire string\n6)at least 8 characters") String password) {
 		super();
@@ -34,11 +34,11 @@ public class Admin {
 		this.password = password;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

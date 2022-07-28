@@ -8,7 +8,7 @@ public interface CartService {
 
 	Cart addCart(Cart cart);
 
-	void deleteCartById(int cartId);
+	void deleteCartById(String cartId);
 
 	List<Cart> getAllCarts();
 

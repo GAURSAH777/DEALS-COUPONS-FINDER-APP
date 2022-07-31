@@ -30,18 +30,17 @@ public class Coupon {
 	private String offerDetails;
 
 	@NotNull(message = "Coupon Code expiry date can not be empty")
-	private Date expiryDate;
+	private String expiryDate;
 
 	public Coupon() {
 
 	}
 
-	public Coupon(String couponId,
-			@NotNull(message = "Coupon Code can not be empty") @Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z])$", message = "Coupon Code should contain at least one upper case letter and at least one digit") String couponCode,
+	public Coupon(String couponId, @NotNull(message = "Coupon Code can not be empty") String couponCode,
 			@NotNull(message = "Company Name can not be empty") String companyName,
 			@NotNull(message = "Coupon category can not be empty") String category,
 			@NotNull(message = "Coupon details can not be empty") String offerDetails,
-			@NotNull(message = "Coupon Code expiry date can not be empty") Date expiryDate) {
+			@NotNull(message = "Coupon Code expiry date can not be empty") String expiryDate) {
 		super();
 		this.couponId = couponId;
 		this.couponCode = couponCode;
@@ -91,11 +90,11 @@ public class Coupon {
 		this.offerDetails = offerDetails;
 	}
 
-	public Date getExpiryDate() {
+	public String getExpiryDate() {
 		return expiryDate;
 	}
 
-	public void setExpiryDate(Date expiryDate) {
+	public void setExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
 

@@ -13,14 +13,17 @@ public class Cart {
 
 	private List<Product> products;
 
+	private String totalPrice;
+
 	public Cart() {
 
 	}
 
-	public Cart(String cartId, List<Product> products) {
+	public Cart(String cartId, List<Product> products, String totalPrice) {
 		super();
 		this.cartId = cartId;
 		this.products = products;
+		this.totalPrice = totalPrice;
 	}
 
 	public String getCartId() {
@@ -39,9 +42,17 @@ public class Cart {
 		this.products = products;
 	}
 
+	public String getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(String totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
 	@Override
 	public String toString() {
-		return "Cart [cartId=" + cartId + ", products=" + products + "]";
+		return "Cart [cartId=" + cartId + ", products=" + products + ", totalPrice=" + totalPrice + "]";
 	}
 
 }

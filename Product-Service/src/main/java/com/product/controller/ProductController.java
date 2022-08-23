@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,7 @@ import com.product.service.ProductService;
  * @Author: Gaurab Sah
  * Created on:2022-07-22
  */
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -59,7 +60,7 @@ public class ProductController {
 		return responseEntity;
 	}
 
-	@GetMapping("/product/{id}")
+	@GetMapping("/get/{id}")
 	public ResponseEntity<Product> fetchProductById(@PathVariable("id") String productId) {
 		LOGGER.info("Inside fetchProductById of ProductController");
 		Product product = productService.getProductById(productId);
@@ -79,14 +80,19 @@ public class ProductController {
 		return responseEntity;
 	}
 
-	@PutMapping("/update")
-	public ResponseEntity<Product> updateProduct(@Valid @RequestBody Product product) {
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Product> updateProduct(@Valid @PathVariable("id") String productId,
+			@RequestBody Product product) {
 		LOGGER.info("Inside updateProduct of ProductController");
-		Product updatedProduct = productService.updateProduct(product);
+		Product updatedProduct = productService.getProductById(productId);
+		updatedProduct.setImageUrl(product.getImageUrl());
+		updatedProduct.setProductName(product.getProductName());
+		updatedProduct.setPrice(product.getPrice());
 		LOGGER.info("Updating Product");
-		ResponseEntity<Product> responseEntity = new ResponseEntity<Product>(updatedProduct, HttpStatus.CREATED);
+		productService.addProduct(updatedProduct);
 		LOGGER.info("Update Product -END!");
-		return responseEntity;
+		return new ResponseEntity<Product>(updatedProduct, HttpStatus.OK);
+
 	}
 
 	@DeleteMapping("/delete/{id}")

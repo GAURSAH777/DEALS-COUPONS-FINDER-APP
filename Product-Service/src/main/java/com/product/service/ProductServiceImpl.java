@@ -56,7 +56,7 @@ public class ProductServiceImpl implements ProductService {
 		} else {
 			Product product = optionalProduct.get();
 			LOGGER.info("Displaying Product!");
-			LOGGER.info("Add Product-END!");
+			LOGGER.info("Get Product-END!");
 			return product;
 		}
 
@@ -82,14 +82,16 @@ public class ProductServiceImpl implements ProductService {
 	public void deleteProductById(String productId) {
 		LOGGER.info("Delete Product -START!");
 		Optional<Product> optionalProduct = productRepository.findById(productId);
-		if (optionalProduct.isPresent()) {
+		if (optionalProduct.isEmpty()) {
+			LOGGER.info("Product Not Found");
+			throw new ProductNotFoundException("Product not found with id: " + productId);
+
+		} else {
+
 			Product product = optionalProduct.get();
 			LOGGER.info("Delete Product -End!");
 			productRepository.delete(product);
 
-		} else {
-			LOGGER.info("Product Not Found");
-			throw new ProductNotFoundException("Product not found with id: " + productId);
 		}
 
 	}

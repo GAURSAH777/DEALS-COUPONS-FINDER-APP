@@ -1,10 +1,14 @@
 package com.coupon;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -26,57 +30,51 @@ class CouponServiceApplicationTests {
 	private CouponRepository couponRepository;
 
 	@Test
-	public void addCouponTest() {
-		Coupon c = new Coupon();
-		c.setCouponId("100");
-		c.setCompanyName("Airtel");
-		c.setCategory("Entertainment");
-		c.setCouponCode("XYZ123#");
-		c.setOfferDetails("60% off");
-		c.setExpiryDate("2023-07-29");
-
-		Mockito.when(couponRepository.save(c)).thenReturn(c);
-		assertThat(couponService.addCoupon(c)).isEqualTo(c);
+	public void saveTest() {
+		Coupon coupon = new Coupon("2", "FOOD100", "Zomato", "food", "12% off", "2023-07-29", "199",
+				"https://images.app.goo.gl/XNQ5gnCidxDjRGVb8");
+		when(couponRepository.save(coupon)).thenReturn(coupon);
+		assertEquals(coupon, couponService.addCoupon(coupon));
 	}
 
 	@Test
-	public void getAllCouponsTest() {
-		Coupon c = new Coupon();
-		c.setCouponId("100");
-		c.setCompanyName("Airtel");
-		c.setCategory("Entertainment");
-		c.setCouponCode("XYZ123#");
-		c.setOfferDetails("60% off");
-		c.setExpiryDate("2023-07-29");
-
-		Coupon c1 = new Coupon();
-		c1.setCouponId("101");
-		c1.setCompanyName("Airtel");
-		c1.setCategory("Entertainment");
-		c1.setCouponCode("XYZ123@");
-		c1.setOfferDetails("60% off");
-		c1.setExpiryDate("2023-07-29");
-
-		List<Coupon> coupons = new ArrayList<>();
-		coupons.add(c1);
-		coupons.add(c);
-
-		Mockito.when(couponRepository.findAll()).thenReturn(coupons);
-		assertThat(couponService.getAllCoupons()).isEqualTo(coupons);
+	public void findByIdTest() {
+		when(couponRepository.findById("2")).thenReturn(Optional.of(new Coupon("2", "FOOD100", "Zomato", "food",
+				"12% off", "2023-07-29", "199", "https://images.app.goo.gl/XNQ5gnCidxDjRGVb8")));
+		Optional<Coupon> cou = couponService.getCouponById("2");
+		assertEquals("2", cou.get().getCouponId());
+		assertEquals("food", cou.get().getCategory());
+		assertEquals("FOOD100", cou.get().getCouponCode());
+		assertEquals("12%", cou.get().getOfferDetails());
+		assertEquals("Zomato", cou.get().getProductName());
 	}
 
 	@Test
-	public void getCouponTest() {
-		Coupon c = new Coupon();
-		c.setCouponId("100");
-		c.setCompanyName("Airtel");
-		c.setCategory("Entertainment");
-		c.setCouponCode("XYZ123#");
-		c.setOfferDetails("60% off");
-		c.setExpiryDate("2023-07-29");
+	public void findallTest() {
+		Coupon c1 = new Coupon("1", "FOOD100", "Zomato", "food", "12% off", "2023-07-29", "199",
+				"https://images.app.goo.gl/XNQ5gnCidxDjRGVb8");
+		Coupon c2 = new Coupon("2", "FOOD100", "Zomato", "food", "12% off", "2023-07-29", "199",
+				"https://images.app.goo.gl/XNQ5gnCidxDjRGVb8");
+		Coupon c3 = new Coupon("3", "FOOD100", "Zomato", "food", "12% off", "2023-07-29", "199",
+				"https://images.app.goo.gl/XNQ5gnCidxDjRGVb8");
+		Coupon c4 = new Coupon("4", "FOOD100", "Zomato", "food", "12% off", "2023-07-29", "199",
+				"https://images.app.goo.gl/XNQ5gnCidxDjRGVb8");
+		List<Coupon> cou = new ArrayList<>();
+		cou.add(c1);
+		cou.add(c2);
+		cou.add(c3);
+		cou.add(c4);
 
-		Mockito.when(couponRepository.findById("100").get()).thenReturn(c);
-		assertThat(couponService.getCouponById("100")).isEqualTo(c);
+		when(couponRepository.findAll()).thenReturn(cou);
+		assertEquals(couponService.getAllCoupons().size(), 4);
 	}
+
+//	@Test
+//	public void deleteByIdTest() {
+//		when(couponRepository.findById("6")).thenReturn(Optional.of(new Coupon("6", "FOOD100", "Zomato", "food",
+//				"12% off", "2023-07-29", "199", "https://images.app.goo.gl/XNQ5gnCidxDjRGVb8")));
+//		doNothing().when(couponRepository).deleteById("6");
+//		assertEquals(couponService.deleteCoupon("6"), "Id 6 deleted!");
+//	}
 
 }

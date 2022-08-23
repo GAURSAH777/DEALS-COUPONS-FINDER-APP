@@ -21,8 +21,8 @@ public class Coupon {
 //	@Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z])$", message = "Coupon Code should contain at least one upper case letter and at least one digit")
 	private String couponCode;
 
-	@NotNull(message = "Company Name can not be empty")
-	private String companyName;
+	@NotNull(message = "Product Name can not be empty")
+	private String productName;
 
 	@NotNull(message = "Coupon category can not be empty")
 	private String category;
@@ -33,22 +33,29 @@ public class Coupon {
 	@NotNull(message = "Coupon Code expiry date can not be empty")
 	private String expiryDate;
 
+	private String price;
+
+	private String imageUrl;
+
 	public Coupon() {
 
 	}
 
 	public Coupon(String couponId, @NotNull(message = "Coupon Code can not be empty") String couponCode,
-			@NotNull(message = "Company Name can not be empty") String companyName,
+			@NotNull(message = "Product Name can not be empty") String productName,
 			@NotNull(message = "Coupon category can not be empty") String category,
 			@NotNull(message = "Coupon details can not be empty") String offerDetails,
-			@NotNull(message = "Coupon Code expiry date can not be empty") String expiryDate) {
+			@NotNull(message = "Coupon Code expiry date can not be empty") String expiryDate, String price,
+			String imageUrl) {
 		super();
 		this.couponId = couponId;
 		this.couponCode = couponCode;
-		this.companyName = companyName;
+		this.productName = productName;
 		this.category = category;
 		this.offerDetails = offerDetails;
 		this.expiryDate = expiryDate;
+		this.price = price;
+		this.imageUrl = imageUrl;
 	}
 
 	public String getCouponId() {
@@ -67,12 +74,12 @@ public class Coupon {
 		this.couponCode = couponCode;
 	}
 
-	public String getCompanyName() {
-		return companyName;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public String getCategory() {
@@ -99,10 +106,27 @@ public class Coupon {
 		this.expiryDate = expiryDate;
 	}
 
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 	@Override
 	public String toString() {
-		return "Coupon [couponId=" + couponId + ", couponCode=" + couponCode + ", companyName=" + companyName
-				+ ", category=" + category + ", offerDetails=" + offerDetails + ", expiryDate=" + expiryDate + "]";
+		return "Coupon [couponId=" + couponId + ", couponCode=" + couponCode + ", productName=" + productName
+				+ ", category=" + category + ", offerDetails=" + offerDetails + ", expiryDate=" + expiryDate
+				+ ", price=" + price + ", imageUrl=" + imageUrl + "]";
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.coupon.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.coupon.model.Coupon;
 
@@ -10,7 +11,7 @@ public interface CouponService {
 
 	List<Coupon> getAllCoupons();
 
-	Coupon getCouponById(String couponId);
+	Optional<Coupon> getCouponById(String couponId);
 
 	Coupon updateCoupon(Coupon coupon);
 

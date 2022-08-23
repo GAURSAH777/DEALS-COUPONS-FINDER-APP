@@ -21,19 +21,19 @@ public class Product {
 	@NotNull(message = "Product price can not be null")
 	private String price;
 
-	private String rating;
+	private String imageUrl;
 
 	public Product() {
 
 	}
 
 	public Product(String productId, @NotNull(message = "Product name should not be empty") String productName,
-			@NotNull(message = "Product price can not be null") String price, String rating) {
+			@NotNull(message = "Product price can not be null") String price, String imageUrl) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.price = price;
-		this.rating = rating;
+		this.imageUrl = imageUrl;
 	}
 
 	public String getProductId() {
@@ -60,18 +60,18 @@ public class Product {
 		this.price = price;
 	}
 
-	public String getRating() {
-		return rating;
+	public String getimageUrl() {
+		return imageUrl;
 	}
 
-	public void setRating(String rating) {
-		this.rating = rating;
+	public void setimageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", productName=" + productName + ", price=" + price + ", rating="
-				+ rating + "]";
+		return "Product [productId=" + productId + ", productName=" + productName + ", price=" + price + ", imageUrl="
+				+ imageUrl + "]";
 	}
 
 }

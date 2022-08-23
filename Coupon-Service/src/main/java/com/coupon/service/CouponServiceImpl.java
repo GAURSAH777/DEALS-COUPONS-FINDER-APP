@@ -39,18 +39,16 @@ public class CouponServiceImpl implements CouponService {
 	}
 
 	@Override
-	public Coupon getCouponById(String couponId) {
+	public Optional<Coupon> getCouponById(String couponId) {
 		LOGGER.info("Get Coupon -START!");
 		Optional<Coupon> optionalCoupon = couponRepository.findById(couponId);
 		if (optionalCoupon.isEmpty()) {
 			LOGGER.info("Coupon Not Found!");
 			throw new CouponNotFoundException("Coupon Not found with id : " + couponId);
 		} else {
-
-			Coupon coupon = optionalCoupon.get();
 			LOGGER.info("Displaying Coupon!");
 			LOGGER.info("Get Coupon -End!");
-			return coupon;
+			return optionalCoupon;
 		}
 	}
 

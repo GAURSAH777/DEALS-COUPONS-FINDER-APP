@@ -7,9 +7,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class CustomerUser {
 
 	@Id
-	private String id;
+	private String customerId;
 
-	private String role;
+//	private String firstName;
+//
+//	private String lastName;
+//
+//	private String contactNumber;
+
+	private String email;
 
 	private String username;
 
@@ -19,28 +25,28 @@ public class CustomerUser {
 
 	}
 
-	public CustomerUser(String id, String role, String username, String password) {
+	public CustomerUser(String customerId, String email, String username, String password) {
 		super();
-		this.id = id;
-		this.role = role;
+		this.customerId = customerId;
+		this.email = email;
 		this.username = username;
 		this.password = password;
 	}
 
-	public String getId() {
-		return id;
+	public String getCustomerId() {
+		return customerId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 
-	public String getRole() {
-		return role;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getUsername() {
@@ -61,7 +67,8 @@ public class CustomerUser {
 
 	@Override
 	public String toString() {
-		return "CustomerUser [id=" + id + ", role=" + role + ", username=" + username + ", password=" + password + "]";
+		return "CustomerUser [customerId=" + customerId + ", email=" + email + ", username=" + username + ", password="
+				+ password + "]";
 	}
 
 }

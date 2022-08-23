@@ -7,10 +7,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.jwt.model.AuthenticationRequest;
 import com.jwt.model.AuthenticationResponse;
@@ -19,6 +21,7 @@ import com.jwt.repository.CustomerUserRepository;
 import com.jwt.service.CustomerUserService;
 import com.jwt.util.JwtUtil;
 
+@CrossOrigin("*")
 @RestController
 public class AuthController {
 
@@ -34,6 +37,9 @@ public class AuthController {
 	@Autowired
 	private JwtUtil jwtUtils;
 
+	@Autowired
+	private RestTemplate restTemplate;
+
 	@GetMapping("/dashboard")
 	private String testingToken() {
 		return "Welcome to DASHBOARD " + SecurityContextHolder.getContext().getAuthentication().getName();
@@ -43,13 +49,21 @@ public class AuthController {
 	@PostMapping("/subs")
 	private ResponseEntity<?> subscribeClient(@RequestBody AuthenticationRequest authenticationRequest)
 			throws Exception {
+//		String firstname = authenticationRequest.getFirstName();
+//		String lastname = authenticationRequest.getLastName();
+//		String contact = authenticationRequest.getContactNumber();
+		String email = authenticationRequest.getEmail();
 		String username = authenticationRequest.getUsername();
 		String password = authenticationRequest.getPassword();
-		String role = authenticationRequest.getRole();
+		
 		CustomerUser userModel = new CustomerUser();
+//		userModel.setFirstName(firstname);
+//		userModel.setLastName(lastname);
+//		userModel.setContactNumber(contact);
+		userModel.setEmail(email);
 		userModel.setUsername(username);
 		userModel.setPassword(new BCryptPasswordEncoder().encode(password));
-		userModel.setRole(role);
+
 		try {
 			userRepository.save(userModel);
 		} catch (Exception e) {
@@ -58,6 +72,11 @@ public class AuthController {
 		return ResponseEntity.ok(new AuthenticationResponse("Successful subscription for client " + username));
 
 	}
+
+//	@PostMapping("/subs")
+//	private String subscribeClient(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+//		return restTemplate.postForObject("http://customer-service/customer/save", authenticationRequest, String.class);
+//	}
 
 	// to authenticate existing user
 	@PostMapping("/auth")
@@ -74,7 +93,7 @@ public class AuthController {
 		UserDetails loadeduser = userServices.loadUserByUsername(username);
 		String generatedToken = jwtUtils.generateToken(loadeduser);
 
-		return ResponseEntity.ok(new AuthenticationResponse(generatedToken, loadeduser.getAuthorities().toString()));
+		return ResponseEntity.ok(new AuthenticationResponse(generatedToken));
 
 	}
 }

@@ -4,22 +4,12 @@ public class AuthenticationResponse {
 
 	private String response;
 
-	public AuthenticationResponse(String response, String role) {
-		this.response = response;
-		this.role = role;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	private String role;
-
 	public AuthenticationResponse() {
+
+	}
+
+	public AuthenticationResponse(String response) {
+		this.response = response;
 
 	}
 
@@ -31,8 +21,9 @@ public class AuthenticationResponse {
 		this.response = response;
 	}
 
-	public AuthenticationResponse(String response) {
-		this.response = response;
+	@Override
+	public String toString() {
+		return "AuthenticationResponse [response=" + response + "]";
 	}
 
 }

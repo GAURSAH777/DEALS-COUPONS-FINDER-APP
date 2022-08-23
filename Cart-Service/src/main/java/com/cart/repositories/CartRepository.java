@@ -7,5 +7,6 @@ import com.cart.model.Cart;
 
 @Repository
 public interface CartRepository extends MongoRepository<Cart, String> {
+	Cart findBycartId(String cartId);
 
 }

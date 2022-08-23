@@ -29,18 +29,12 @@ class CustomerManagementApplicationTests {
 	public void getAllCustomersTest() {
 		Customer c1 = new Customer();
 		c1.setCustomerId("1");
-		c1.setFirstName("Amit");
-		c1.setLastName("Chaudhary");
-		c1.setContactNumber("9845831190");
 		c1.setEmail("amit@gmail.com");
 		c1.setUsername("amit");
 		c1.setPassword("Amitchaudhary@123");
 
 		Customer c2 = new Customer();
 		c2.setCustomerId("12");
-		c2.setFirstName("Mit");
-		c2.setLastName("Chaudhary");
-		c2.setContactNumber("9845831191");
 		c2.setEmail("mit@gmail.com");
 		c2.setUsername("mit");
 		c2.setPassword("Mitchaudhary@123");
@@ -59,9 +53,6 @@ class CustomerManagementApplicationTests {
 
 		Customer c1 = new Customer();
 		c1.setCustomerId("1");
-		c1.setFirstName("Amit");
-		c1.setLastName("Chaudhary");
-		c1.setContactNumber("9845831190");
 		c1.setEmail("amit@gmail.com");
 		c1.setUsername("amit");
 		c1.setPassword("Amitchaudhary@123");
@@ -91,9 +82,6 @@ class CustomerManagementApplicationTests {
 	public void getCustomerByIdTest() {
 		Customer c1 = new Customer();
 		c1.setCustomerId("1");
-		c1.setFirstName("Amit");
-		c1.setLastName("Chaudhary");
-		c1.setContactNumber("9845831190");
 		c1.setEmail("amit@gmail.com");
 		c1.setUsername("amit");
 		c1.setPassword("Amitchaudhary@123");

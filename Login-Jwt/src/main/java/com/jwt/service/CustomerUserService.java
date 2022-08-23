@@ -31,8 +31,8 @@ public class CustomerUserService implements UserDetailsService {
 
 		String name = userfound.getUsername();
 		String pswd = userfound.getPassword();
-		String role = userfound.getRole();
-		List<GrantedAuthority> authorities = Arrays.stream(userfound.getRole().split(","))
+		
+		List<GrantedAuthority> authorities = Arrays.stream(userfound.getUsername().split(","))
 				.map(SimpleGrantedAuthority::new).collect(Collectors.toList());// list of granted Authorities of a user
 
 		// fetching each role of user from DB and storing them individually in list

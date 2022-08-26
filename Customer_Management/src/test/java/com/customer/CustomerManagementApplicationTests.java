@@ -91,21 +91,18 @@ class CustomerManagementApplicationTests {
 
 	}
 
-//	@Test
-//	public void deleteCustomerTest() {
-//		
-//		Customer c1 = new Customer();
-//		c1.setCustomerId("1");
-//		c1.setFirstName("Amit");
-//		c1.setLastName("Chaudhary");
-//		c1.setContactNumber("9845831190");
-//		c1.setEmail("amit@gmail.com");
-//		c1.setUsername("amit");
-//		c1.setPassword("Amitchaudhary@123");
-//		
-//		Mockito.when(customerRepository.getOne("1")).thenReturn(c1);
-//		Mockito.when(customerRepository.existsById(c1.getCustomerId())).thenReturn(false);
-//		assertFalse(customerRepository.existsById(c1.getCustomerId()));
-//	}
-//
+	@Test
+	public void deleteCustomerTest() {
+
+		Customer c1 = new Customer();
+		c1.setCustomerId("1");
+		c1.setEmail("amit@gmail.com");
+		c1.setUsername("amit");
+		c1.setPassword("Amitchaudhary@123");
+
+		Mockito.when(customerRepository.findById("1").get()).thenReturn(c1);
+		Mockito.when(customerRepository.existsById(c1.getCustomerId())).thenReturn(false);
+		assertFalse(customerRepository.existsById(c1.getCustomerId()));
+	}
+
 }

@@ -1,4 +1,4 @@
-package com.cart.controller;
+package com.pay.controller;
 
 import java.util.Map;
 
@@ -23,7 +23,7 @@ public class RazorPayController {
 		System.out.println("INSIDE PAYMENT ORDER");
 		Double amt = Double.parseDouble(data.get("amount").toString());
 
-		var client = new RazorpayClient("rzp_test_FHH2jc4Y2ZFg4B", "nQH7q19nOWTnfvuiKSFuFCbl");
+		var client = new RazorpayClient("Enter Key Id", "Enter your secret key from razorpay");
 
 		JSONObject orderRequest = new JSONObject();
 

@@ -12,7 +12,7 @@
 	<groupId>com.pay</groupId>
 	<artifactId>Payment-Service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Cart-Service</name>
+	<name>Payment-Service</name>
 	<description>This Project is for Payment Microservice</description>
 	<properties>
 		<java.version>11</java.version>

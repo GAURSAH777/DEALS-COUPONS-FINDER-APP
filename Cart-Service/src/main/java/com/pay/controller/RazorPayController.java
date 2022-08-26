@@ -23,7 +23,7 @@ public class RazorPayController {
 		System.out.println("INSIDE PAYMENT ORDER");
 		Double amt = Double.parseDouble(data.get("amount").toString());
 
-		var client = new RazorpayClient("Enter Key Id", "Enter your secret key from razorpay");
+		var client = new RazorpayClient("Enter Key Id", "Enter Secret Key Id");
 
 		JSONObject orderRequest = new JSONObject();
 
